@@ -1,7 +1,10 @@
+const { mergeConfig } = require('vite')
+const pluginImp = require('vite-plugin-imp')
+
 module.exports = {
   "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+    "../packages/**/*.stories.mdx",
+    "../packages/**/*.stories.@(js|jsx|ts|tsx)"
   ],
   "addons": [
     "@storybook/addon-links",
@@ -14,5 +17,33 @@ module.exports = {
   },
   "features": {
     "storyStoreV7": true
+  },
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      define: {
+        ...config.define,
+        global: 'window'
+      },
+      css: {
+        preprocessorOptions: {
+          less: {
+            javascriptEnabled: true
+          }
+        }
+      },
+      resolve: {
+        extensions: ['.js', '.vue']
+      },
+      plugins: [
+        pluginImp({
+          libList: [
+            {
+              libName: 'ant-design-vue',
+              style: (name) => `ant-design-vue/es/${name}/style`
+            }
+          ]
+        })
+      ]
+    })
   }
 }

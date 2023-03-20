@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { RichButton } from '@rich/chore'
+import { RichButton } from '@rich/core'
+
 </script>
 
 <template>
