@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import { Button } from 'ant-design-vue'
+import { inject, provide } from 'vue';
 
 defineProps({
         type: {
@@ -16,4 +17,7 @@ const onClick = () => {
         console.log('test')
 }
 
+const appStatus = inject('appStatus')
+
+console.log(appStatus)
 </script>
