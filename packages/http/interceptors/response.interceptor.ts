@@ -1,5 +1,5 @@
 import type { AxiosError } from 'axios'
-import useRedirectToLogin from '../useRedirectToLogin'
+import useRedirectToLogin from '../useRedirectToLogin/useRedirectToLogin'
 // import { Message } from '@fs/utils'
 import { get } from 'lodash'
 
