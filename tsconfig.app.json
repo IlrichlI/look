@@ -7,6 +7,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@rich/core": ["./packages/core"],
+      "@rich/form": ["./packages/form"],
       "@rich/http": ["./packages/http"],
       "@rich/layout": ["./packages/layout"],
       "@rich/utils": ["./packages/utils"]

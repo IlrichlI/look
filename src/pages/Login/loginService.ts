@@ -1,7 +1,7 @@
 import type {AxiosInstance} from 'axios'
 import {useSerializeURLs} from '@rich/http'
-const loginApiRoutes = useSerializeURLs('/api/login',{
-        login: '/'
+const loginApiRoutes = useSerializeURLs('/rich/web',{
+        login: '/login'
 })
 
 const loginService = (axios: AxiosInstance) => ({
