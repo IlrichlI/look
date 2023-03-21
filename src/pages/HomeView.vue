@@ -1,9 +1,11 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <h3>{{  translate ? translate('login') : ''  }}</h3>
 </template>
+
+<script setup lang="ts">
+import { inject } from 'vue';
+
+
+const translate = inject('translate') as Function
+
+</script>

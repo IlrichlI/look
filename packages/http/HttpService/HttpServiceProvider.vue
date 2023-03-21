@@ -8,11 +8,13 @@
 <script setup lang="ts">
 import { getInstance } from '../interceptors'
 import { provide } from 'vue';
+import type { PropType } from 'vue';
+import type { TServices } from './type'
 
 
 const props = defineProps({
     services: {
-        type: Function,
+        type: Array as PropType<TServices | Array<TServices>>,
         default: () => null
     },
     servicesName: {

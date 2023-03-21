@@ -8,6 +8,7 @@
       "@/*": ["./src/*"],
       "@rich/core": ["./packages/core"],
       "@rich/http": ["./packages/http"],
+      "@rich/layout": ["./packages/layout"],
       "@rich/utils": ["./packages/utils"]
     }
   }
