@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
+import { dashboardRoute } from '@/pages/Home/Dashboard'
 
 
 const homeRoute: RouteRecordRaw[] = [
@@ -10,15 +11,7 @@ const homeRoute: RouteRecordRaw[] = [
       sidebar: true
     },
     children: [
-      {
-        path: '/',
-        name: 'home',
-        component: () => import('../Login/LoginPage.vue'),
-        meta: {
-          menuitem: true,
-          icon: 'dashboard-outlined'
-        },
-      }
+      ...dashboardRoute
     ]
   }
 ]
