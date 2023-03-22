@@ -19,7 +19,7 @@ const unauthenticatedAppStatus = () => {
   appStatus.value = 'unauthenticated'
 }
 
-provide('appStatus', appStatus.value)
+provide('appStatus', appStatus)
 
 provide('authenticatedAppStatus', authenticatedAppStatus)
 

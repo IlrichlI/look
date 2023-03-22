@@ -1,11 +1,9 @@
 export function useRedirectToLogin() {
   return {
     redirectToLogin: () => {
-      window.localStorage.removeItem('fs-user_name')
-      window.localStorage.removeItem('fs-token')
-      window.localStorage.removeItem('fs-expires_at')
-      window.localStorage.removeItem('fs-expire_minutes')
-      window.location.replace(`${window.location}/auth/login`)
+      window.localStorage.removeItem('rich-user_name')
+      window.localStorage.removeItem('rich-token')
+      window.location.replace(`${window.location}/login`)
     }
   }
 }

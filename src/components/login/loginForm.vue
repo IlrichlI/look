@@ -1,6 +1,5 @@
 <template>
   <FormProvider
-    @onFormChange="onFormChange"
     @submit="onSubmit"
   >
 
@@ -28,22 +27,21 @@
 import { RichButton } from '@rich/core';
 import { FormProvider, InputField } from '@rich/form';
 import { useService } from '@rich/http'
-import { computed } from 'vue';
-
-const onFormChange = (data: any) => {
-  console.log(data)
-}
-
+import { computed, inject } from 'vue';
+import { useAuth } from '@/composables/useAuth'
 
 const { mutate, loading } = useService({ serviceName: 'loginService', actionName: 'login'})
+const authenticatedAppStatus = inject('authenticatedAppStatus') as () => void
+
+const { login } = useAuth({ mutate, authenticatedAppStatus })
 
 const buttonLoading = computed(() => loading.value)
 
+
 const onSubmit = async (data: any) => {
 
-  const res = await mutate(data)
-
-  console.log(res, loading.value)
-} 
+  await login(data)
+  
+}
 
 </script>

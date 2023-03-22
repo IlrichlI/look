@@ -34,21 +34,8 @@ provide('changeForm', changeForm)
 const emit = defineEmits(['submit', 'onFormChange'])
 
 
-const onSubmit = (data: any) => {
-  let formObj: Record<string, string> = {} as Record<string, string>
-  let i = 0
-  while(data.target[i]) {
-    const input = data.target[i]
-    const key = input.id.replace('form_item_', '')
-                
-    if(key){
-      formObj[key]= input.value
-    }
-
-    i++
-  }
-
-  emit('submit', formObj)
+const onSubmit = () => {
+  emit('submit', JSON.parse(JSON.stringify(form)))
 }
 
 </script>
