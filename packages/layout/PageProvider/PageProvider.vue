@@ -9,7 +9,6 @@ import { HttpServiceProvider } from '../../http'
 import { useI18n } from 'vue-i18n';
 import { provide } from 'vue';
 import type { TServices } from '../../http'
-import type { LocaleMessageType, VueMessageType } from 'vue-i18n';
 import type { PropType } from 'vue';
 
 const props = defineProps({
@@ -22,7 +21,7 @@ const props = defineProps({
     default: () => 'service'
   },
   messages: {
-    type: Object as PropType<LocaleMessageType<VueMessageType>>,
+    type: Object as PropType<{ fa?: object, en?: object }>,
     default: () => ({ fa: {}, en: {} })
   }
 })

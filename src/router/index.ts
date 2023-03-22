@@ -1,41 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../pages/HomeView.vue'
+import { homeRoute } from '@/pages/Home'
 import { loginRoute } from '@/pages/Login'
+import { useRoutes } from '@rich/layout'
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    ...loginRoute,
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-      meta: { requiresAuth: true, permission: '' }
-    },
-  ]
-})
+export const routes = [
+  ...loginRoute,
+  ...homeRoute
+]
 
-router.beforeEach((to, _from, next) => {
 
-  const token = window.localStorage.getItem('rich-token')
-
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!token) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
-    } else {
-      next()
-    }
-  } else if (to.fullPath.includes('/login') && token) {
-    next({
-      path: '/',
-    })
-  } else {
-    next()
-  }
-
+const { router } = useRoutes({
+  routes,
+  BASE_URL: import.meta.env.BASE_URL
 })
 
 export default router
