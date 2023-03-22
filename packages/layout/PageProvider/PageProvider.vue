@@ -13,18 +13,18 @@ import type { LocaleMessageType, VueMessageType } from 'vue-i18n';
 import type { PropType } from 'vue';
 
 const props = defineProps({
-    services: {
-        type: Array as PropType<TServices | Array<TServices>>,
-        default: () => null
-    },
-    servicesName: {
-        type: String,
-        default: () => 'service'
-    },
-    messages: {
-      type: Object as PropType<LocaleMessageType<VueMessageType>>,
-      default: () => ({ fa: {}, en: {} })
-    }
+  services: {
+    type: Array as PropType<TServices | Array<TServices>>,
+    default: () => null
+  },
+  servicesName: {
+    type: String,
+    default: () => 'service'
+  },
+  messages: {
+    type: Object as PropType<LocaleMessageType<VueMessageType>>,
+    default: () => ({ fa: {}, en: {} })
+  }
 })
 
 const { t } = useI18n({ messages: props.messages as {} })

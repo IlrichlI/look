@@ -8,12 +8,12 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     proxy: {
-        base: './',
-        '^.*api.*': {
-            target: 'http://localhost:3001',
-            changeOrigin: true,
-            secure: false,
-        },
+      base: './',
+      '^.*api.*': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
   resolve: {
