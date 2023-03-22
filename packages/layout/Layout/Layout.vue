@@ -4,7 +4,7 @@
     <Layout>
       <Header />
       <LayoutContent style="margin: 0 16px">
-        <Breadcrumbs />
+        <Breadcrumbs :routes="routes" />
         
         <router-view />
 

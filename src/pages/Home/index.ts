@@ -16,7 +16,7 @@ const homeRoute: RouteRecordRaw[] = [
         component: () => import('../Login/LoginPage.vue'),
         meta: {
           menuitem: true,
-          icon: 'pie-chart-outlined'
+          icon: 'dashboard-outlined'
         },
       }
     ]

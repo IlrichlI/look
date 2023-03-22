@@ -15,6 +15,7 @@
     />
             
     <RichButton 
+      ghost
       html-type="submit" 
       text-i18n="login.enter" 
       :loading="buttonLoading" 

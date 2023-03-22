@@ -6,7 +6,7 @@
       
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { PieChartOutlined } from '@ant-design/icons-vue'
+import { PieChartOutlined, DashboardOutlined } from '@ant-design/icons-vue'
 
 export default defineComponent({
   props: {
@@ -16,7 +16,8 @@ export default defineComponent({
     },
   },
   components: {
-    PieChartOutlined
+    PieChartOutlined,
+    DashboardOutlined
   }
 });
 </script>
