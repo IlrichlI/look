@@ -5,6 +5,8 @@
     "dashboard": "میز کار",
     "user-managment": "مدیریت کاربران",
     "users": "کاربران",
-    "roles": "نقش ها"
+    "roles": "نقش ها",
+    "system": "سیستم",
+    "request-log": "لاگ درخواست ها"
   }
 }
