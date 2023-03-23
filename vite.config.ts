@@ -23,6 +23,7 @@ export default defineConfig({
       '@rich/form': fileURLToPath(new URL('./packages/form', import.meta.url)),
       '@rich/http': fileURLToPath(new URL('./packages/http', import.meta.url)),
       '@rich/layout': fileURLToPath(new URL('./packages/layout', import.meta.url)),
+      '@rich/table': fileURLToPath(new URL('./packages/table', import.meta.url)),
       '@rich/utils': fileURLToPath(new URL('./packages/utils', import.meta.url))
     }
   }

@@ -10,6 +10,7 @@
       "@rich/form": ["./packages/form"],
       "@rich/http": ["./packages/http"],
       "@rich/layout": ["./packages/layout"],
+      "@rich/table": ["./packages/table"],
       "@rich/utils": ["./packages/utils"]
     }
   }
