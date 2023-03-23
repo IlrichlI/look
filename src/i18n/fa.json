@@ -2,6 +2,9 @@
   "sidebar": {
     "title": "پنل مدیریت ریچ",
     "home": "خانه",
-    "dashboard": "میز کار"
+    "dashboard": "میز کار",
+    "user-managment": "مدیریت کاربران",
+    "users": "کاربران",
+    "roles": "نقش ها"
   }
 }
