@@ -5,7 +5,7 @@
     :name="name"
     :rules="rules"
   >
-    <Input :type="type" @input="onInputChange" />
+    <Input :type="type" @input="onInputChange" :default-value="defautValue" />
   </FormItem>
 </template>
 
@@ -32,6 +32,10 @@ const props = defineProps({
     default: () => '' 
   },
   name: {
+    type: String,
+    default: () => '' 
+  },
+  defautValue: {
     type: String,
     default: () => '' 
   },

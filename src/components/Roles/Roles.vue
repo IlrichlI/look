@@ -1,9 +1,9 @@
 <template>
-  <GeneralTable :columns="columns" :service="service" />
+  <RichTable :columns="columns" :service="service" />
 </template>
 
 <script setup lang="ts">
-import { GeneralTable } from '@rich/table'
+import { RichTable } from '@rich/table'
 
 const columns = [
   {

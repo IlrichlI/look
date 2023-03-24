@@ -1,7 +1,12 @@
 <template>
   <div>
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center py-4">
       <div>
+        <div  v-if="title" class="flex items-center">
+          <RichTypography type="TypographyTitle" :level="5" :text-i18n="i18nPrefix + '.' +title" />
+          <RichDivider />
+          <RichTypography type="TypographyText" :text="total + ''" />
+        </div>
         <div v-if="filter">
           filter
         </div>
@@ -11,26 +16,31 @@
       </div>
     </div>
     <Table
-    :data-source="dataSource.length ? dataSource : ((data as any)?.data as any[]) || []"
-    :columns="tableColumns"
-    :pagination="{
-      onChange: onPagination,
-      pageSize: size,
-      total: total,
-      position: ['bottomCenter'],
-      showSizeChanger: false
-    }"
-    :loading="(loading as any as boolean)"
-    />
+      :data-source="dataSource.length ? dataSource : ((data as any)?.data as any[]) || []"
+      :columns="tableColumns"
+      :pagination="{
+        onChange: onPagination,
+        pageSize: size,
+        total: total,
+        position: ['bottomCenter'],
+        showSizeChanger: false
+      }"
+      :loading="(loading as any as boolean)"
+    >
+    <template #bodyCell="{ column, text, record }">
+      <slot name="bodyCell" :column="column" :text="text" :record="record" />
+    </template>
+    </Table>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Table } from 'ant-design-vue'
 import { ColumnsType } from 'ant-design-vue/lib/table';
-import { PropType, onMounted, ref } from 'vue';
+import { PropType, onMounted, ref, watch } from 'vue';
 import { useService } from '../../http'
 import { useTranslate } from '../../utils'
+import { RichTypography, RichDivider } from '../../core'
 
 const props = defineProps({
   dataSource: {
@@ -49,7 +59,15 @@ const props = defineProps({
     type: String,
     default: () => ''
   },
+  title: {
+    type: String,
+    default: () => ''
+  },
   filter: {
+    type: Boolean,
+    default: () => false
+  },
+  refresh: {
     type: Boolean,
     default: () => false
   }
@@ -62,7 +80,7 @@ const total = ref(1)
 const { translate } = useTranslate()
 
 const tableColumns: ColumnsType = props.columns.map(
-  ({ title = '', ...rest }) => ({ title: translate(props.i18nPrefix ? props.i18nPrefix + '.' + title : title as string) , ...rest })
+  ({ title = '', ...rest }) => ({ title: translate(props.i18nPrefix && title ? props.i18nPrefix + '.' + title : title as string) , ...rest })
 )
 
 const onPagination = (pageNumber: number) => {
@@ -83,5 +101,6 @@ const loadTable = async () => {
 
 onMounted(loadTable)
 
+watch(() => props.refresh, loadTable)
 
 </script>

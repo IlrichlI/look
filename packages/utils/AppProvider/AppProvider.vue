@@ -1,6 +1,8 @@
 <template>
         <ConfigProvider :locale="fa_IR" direction="rtl">
-                <router-view />
+            <RichModalProvider>
+              <router-view />
+            </RichModalProvider>
         </ConfigProvider>
 </template>
 
@@ -8,6 +10,7 @@
 import { ConfigProvider } from 'ant-design-vue'
 import { provide, ref } from 'vue';
 import fa_IR from 'ant-design-vue/es/locale/fa_IR';
+import { RichModalProvider } from '../../core';
 
 const appStatus = ref<'initial' | 'authenticated' | 'unauthenticated'>('initial')
 

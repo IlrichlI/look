@@ -1,9 +1,9 @@
 <template>
-  <GeneralTable :columns="columns" :service="service" i18n-prefix="request-log" />
+  <RichTable :columns="columns" :service="service" i18n-prefix="request-log" />
 </template>
       
 <script setup lang="ts">
-import { GeneralTable } from '@rich/table'
+import { RichTable } from '@rich/table'
       
 const columns = [
   {

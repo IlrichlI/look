@@ -15,7 +15,7 @@
             />
           </MenuItem>
 
-          <SubMenu v-else>
+          <SubMenu v-else :key="menuItem.name">
             <template #title>
               <RichIcon v-if="menuItem.icon" :icon="menuItem.icon" />
               <RichTypography 

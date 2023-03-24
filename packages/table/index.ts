@@ -1,1 +1,1 @@
-export * from './GeneralTable'
+export * from './RichTable'
