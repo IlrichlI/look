@@ -1,13 +1,13 @@
 <template>
-        <GeneralTable :columns="columns" :service="service" />
-      </template>
+  <GeneralTable :columns="columns" :service="service" i18n-prefix="request-log" />
+</template>
       
 <script setup lang="ts">
 import { GeneralTable } from '@rich/table'
       
 const columns = [
   {
-    title: 'Name',
+    title: 'name',
     dataIndex: 'name',
     key: 'name',
   },
