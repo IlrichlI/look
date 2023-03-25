@@ -35,6 +35,10 @@ const emit = defineEmits(['submit', 'onFormChange'])
 
 
 const onSubmit = () => {
+  const keys = Object.keys(form).filter(k => typeof form[k] === 'boolean' && !form[k])
+  keys.forEach(k => {
+    delete form[k]
+  })
   emit('submit', JSON.parse(JSON.stringify(form)))
 }
 

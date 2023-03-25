@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
+import { permissionsRoute } from './Permissions'
 
 
 const rolesRoute: RouteRecordRaw[] = [
@@ -8,7 +9,10 @@ const rolesRoute: RouteRecordRaw[] = [
     component: () => import('./RolesPage.vue'),
     meta: {
       menuItem: true
-    }
+    },
+    children: [
+      ...permissionsRoute
+    ]
   }
 ]
 

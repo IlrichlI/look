@@ -1,0 +1,32 @@
+<template>
+  <RichModal modal-id="delete-role" title="roles.delete">
+      <RichTypography text="آیا از حذف نقش مطمئن هستید؟" />
+        <div class="flex justify-end items-center">
+          <RichButton text-i18n="permission.cancel" type="text" @on-click="closeModal('delete-role')" />
+          <RichButton text-i18n="permission.save" ghost  :loading="(loading as any as boolean)" @on-click="deleteRole"/>
+        </div>
+  </RichModal>
+</template>
+
+<script setup lang="ts">
+import { RichButton, RichModal, RichTypography, useModal } from '@rich/core';
+import { useService } from '@rich/http';
+
+const emit = defineEmits(['refersh'])
+
+const { mutate, loading } = useService({ serviceName: 'rolesService', actionName: 'delete' })
+
+const { closeModal, modals } = useModal()
+
+
+const deleteRole = async () => {
+
+  await mutate((modals.value['delete-role'].payload as any).id)
+
+  emit('refersh')
+
+  closeModal('delete-role')
+
+}
+
+</script>

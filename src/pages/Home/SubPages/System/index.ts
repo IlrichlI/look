@@ -6,7 +6,8 @@ const systemRoute: RouteRecordRaw[] = [
     path: '/system',
     name: 'system',
     meta: {
-      menuItem: true
+      menuItem: true,
+      icon: 'WarningOutlined'
     },
     children: [
       ...requestLogRoute,

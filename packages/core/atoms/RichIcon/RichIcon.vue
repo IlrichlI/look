@@ -1,12 +1,10 @@
 <template>
-  <transition name="fade" mode="out-in">
-    <component :is="icon" v-once :name="icon" v-bind="$attrs" />
-  </transition>
+  <component :is="icon" v-once :name="icon" v-bind="$attrs" />
 </template>
       
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { PieChartOutlined, DashboardOutlined } from '@ant-design/icons-vue'
+import { WarningOutlined, DashboardOutlined, UsergroupAddOutlined } from '@ant-design/icons-vue'
 
 export default defineComponent({
   props: {
@@ -16,8 +14,9 @@ export default defineComponent({
     },
   },
   components: {
-    PieChartOutlined,
-    DashboardOutlined
+    WarningOutlined,
+    DashboardOutlined,
+    UsergroupAddOutlined,
   }
 });
 </script>

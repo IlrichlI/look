@@ -7,7 +7,8 @@ const userManagmentRoute: RouteRecordRaw[] = [
     path: '/user-managment',
     name: 'user-managment',
     meta: {
-      menuItem: true
+      menuItem: true,
+      icon: 'UsergroupAddOutlined'
     },
     children: [
       ...usersRoute,

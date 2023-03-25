@@ -7,7 +7,8 @@ const dashboardRoute: RouteRecordRaw[] = [
     name: 'dashboard',
     component: () => import('./DashboardPage.vue'),
     meta: {
-      menuItem: true
+      menuItem: true,
+      icon: 'DashboardOutlined'
     }
   }
 ]
