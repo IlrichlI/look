@@ -1,13 +1,13 @@
 <template>
-  <RichModal modal-id="create-role" title="permission.create-permission">
+  <RichModal modal-id="create-role" title="roles.create-role">
     <FormProvider @submit="createPermission">
-      <InputField label-i18n="permission.roleName" name="roleName" />
+      <InputField label-i18n="roles.Name" name="roleName" />
       <template v-for="route in ((dataAllRoutes as any)?.routes as any[]) || []" :key="route.pattern">
         <CheckboxField :label-i18n="`permission.${route.pattern.replace(/[.]/g, '-')}`" :name="route.pattern"/>
       </template>
       <div class="flex justify-end items-center">
-          <RichButton text-i18n="permission.cancel" type="text" @on-click="closeModal('create-role')" />
-          <RichButton text-i18n="permission.save" ghost  html-type="submit" :loading="loadingSaveButton"/>
+          <RichButton text-i18n="roles.cancel" type="text" @on-click="closeModal('create-role')" />
+          <RichButton text-i18n="roles.save" ghost  html-type="submit" :loading="loadingSaveButton"/>
         </div>
     </FormProvider>
   </RichModal>
@@ -23,10 +23,10 @@ const emit = defineEmits(['refersh'])
 
 const { mutate: mutateAllRoutes, data: dataAllRoutes } = useService({ serviceName: 'rolesService', actionName: 'allRoutes' })
 const { mutate: mutateCreateRole, data: dataCreateRole, loading: loadingCreateRole } = useService({ serviceName: 'rolesService', actionName: 'create' })
-const { mutate: mutateGeneratePermission, loading: loadingGeneratePermission } = useService({ serviceName: 'rolesService', actionName: 'generate' })
+const { mutate: mutateGeneratePermission, loading: loadingGenerateroles } = useService({ serviceName: 'rolesService', actionName: 'generate' })
 const { closeModal } = useModal()
 
-const loadingSaveButton = computed(() => loadingCreateRole.value || loadingGeneratePermission.value)
+const loadingSaveButton = computed(() => loadingCreateRole.value || loadingGenerateroles.value)
 
 onMounted(mutateAllRoutes)
 

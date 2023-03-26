@@ -1,13 +1,13 @@
 <template>
-  <RichModal modal-id="edit-role" title="permission.create-permission">
+  <RichModal modal-id="edit-role" title="roles.edit">
     <FormProvider @submit="createPermission">
-      <InputField label-i18n="permission.roleName" name="roleName" :defaut-value="((modals as any)['edit-role']?.payload as any).name" />
+      <InputField label-i18n="roles.Name" name="roleName" :defaut-value="((modals as any)['edit-role']?.payload as any).name" />
       <template v-for="route in ((dataAllRoutes as any)?.routes as any[]) || []" :key="route.pattern">
         <CheckboxField :label-i18n="`permission.${route.pattern.replace(/[.]/g, '-')}`" :name="route.pattern"/>
       </template>
       <div class="flex justify-end items-center">
-          <RichButton text-i18n="permission.cancel" type="text" @on-click="closeModal('edit-role')" />
-          <RichButton text-i18n="permission.save" ghost  html-type="submit" :loading="loadingSaveButton"/>
+          <RichButton text-i18n="roles.cancel" type="text" @on-click="closeModal('edit-role')" />
+          <RichButton text-i18n="roles.save" ghost  html-type="submit" :loading="loadingSaveButton"/>
         </div>
     </FormProvider>
   </RichModal>

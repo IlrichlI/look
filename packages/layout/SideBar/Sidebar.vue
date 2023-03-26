@@ -5,8 +5,8 @@
         <RichTypography text-i18n="sidebar.title" class="!text-white p-4 truncate" type="TypographyTitle" :level="5" />
       </div>
       <Menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-        <template v-for="menuItem in menuItems"  :key="menuItem.name">
-          <MenuItem v-if="!menuItem?.children?.length" @click="navigateMenu(menuItem.name)">
+        <template v-for="menuItem in menuItems" :key="menuItem.name">
+          <MenuItem v-if="!menuItem?.children?.length" :key="menuItem.name" @click="navigateMenu(menuItem.name)">
             <RichIcon v-if="menuItem.icon" :icon="menuItem.icon" />
             <RichTypography 
               class="!text-white"
@@ -15,7 +15,7 @@
             />
           </MenuItem>
 
-          <SubMenu v-else :key="menuItem.name">
+          <SubMenu v-else :key="menuItem.path">
             <template #title>
               <RichIcon v-if="menuItem.icon" :icon="menuItem.icon" />
               <RichTypography 
@@ -44,8 +44,8 @@
 
 <script setup lang="ts">
 import { LayoutSider ,Menu, MenuItem, SubMenu } from 'ant-design-vue'
-import { type PropType, ref, computed } from 'vue';
-import { RouteRecordRaw, useRouter } from 'vue-router';
+import { type PropType, ref, computed, onMounted } from 'vue';
+import { RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 import { RichIcon, RichTypography } from '../../core'
 
 const props = defineProps({
@@ -56,16 +56,28 @@ const props = defineProps({
 })
 
 const router = useRouter()
+const route = useRoute()
 
 const navigateMenu = (name: string) => {
   router.push({ name })
 }
 
-const serilizeRoutes = (routes: RouteRecordRaw[]) => routes.filter(r => r.meta?.menuItem).map(r => ({ name: r.name, icon: r.meta?.icon as string, children: r.children ? serilizeRoutes(r.children) : [] }))
+const serilizeRoutes = (routes: RouteRecordRaw[]) => routes.filter(r => r.meta?.menuItem).map(r => ({ name: r.name, path: r.path, icon: r.meta?.icon as string, children: r.children ? serilizeRoutes(r.children) : [] }))
 
 const menuItems = computed(() => serilizeRoutes(props.routes.find(r => r.meta?.sidebar)?.children || []))
 
 const collapsed = ref(false)
-const selectedKeys = ref<string[]>([menuItems.value[0]?.name as string || ''])
+const selectedKeys = ref<string[]>([])
+
+onMounted(() => {
+  menuItems.value.forEach(item => {
+    if(item.children?.length) {
+      const name = item.children.find(mi => route.fullPath.includes(mi.path))?.name
+      if(name) selectedKeys.value = [name]
+    } else if(route.fullPath === item.path || route.fullPath.includes(item.path)){
+      selectedKeys.value = [item.name]
+    }
+  })
+})
 
 </script>

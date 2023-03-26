@@ -1,9 +1,9 @@
 <template>
   <RichModal modal-id="delete-role" title="roles.delete">
-      <RichTypography text="آیا از حذف نقش مطمئن هستید؟" />
+      <RichTypography text-i18n="roles.delete-message" />
         <div class="flex justify-end items-center">
-          <RichButton text-i18n="permission.cancel" type="text" @on-click="closeModal('delete-role')" />
-          <RichButton text-i18n="permission.save" ghost  :loading="(loading as any as boolean)" @on-click="deleteRole"/>
+          <RichButton text-i18n="roles.cancel" type="text" @on-click="closeModal('delete-role')" />
+          <RichButton text-i18n="roles.save" ghost  :loading="(loading as any as boolean)" @on-click="deleteRole"/>
         </div>
   </RichModal>
 </template>

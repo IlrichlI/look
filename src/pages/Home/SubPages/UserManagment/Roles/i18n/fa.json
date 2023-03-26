@@ -5,6 +5,28 @@
     "Name": "نام نقش",
     "created_at": "ساخته شده در",
     "create-role": "افزودن نقش",
-    "permission": "مدیریت دسترسی ها"
+    "permission": "مدیریت دسترسی ها",
+    "delete-message": "آیا از حذف نقش مطمئن هستید؟",
+    "edit": "ویرایش نقش",
+    "delete": "حذف نقش"
+  },
+  "permission": {
+    "rich-web-user-search": "دسترسی به گرفتن کاربر ها",
+    "rich-web-user-update": "دسترسی به بروزرسانی کاربر ها",
+    "rich-web-user-upload_avatar": "دسترسی به بروزرسانی آواتار کاربر ها",
+    "rich-web-user-get_avatar": "دسترسی به گرفتن آواتار کاربر ها",
+    "rich-web-permission-search": "دسترسی به گرفتن دسترسی ها",
+    "rich-web-permission-show": "دسترسی به گرفتن یک دسترسی",
+    "rich-web-permission-create": "دسترسی به ساختن دسترسی",
+    "rich-web-permission-update": "دسترسی به بروزرسانی",
+    "rich-web-permission-delete": "دسترسی به حذف دسترسی",
+    "rich-web-permission-allRoutes": "دسترسی به گرفتن مسیرهای دسترسی ها",
+    "rich-web-permission-generate": "دسترسی به ساختن الگو دسترسی",
+    "rich-web-role-search": "دسترسی به گرفتن نقش ها",
+    "rich-web-role-show": "دسترسی به گرفتن یک نقش",
+    "rich-web-role-create": "دسترسی به ساختن نقش",
+    "rich-web-role-update": "دسترسی به بروزرسانی نقش",
+    "rich-web-role-delete": "دسترسی به حذف نقش",
+    "rich-web-request-log-search": "دسترسی به گرفتن لاگ درخواست ها"
   }
 }

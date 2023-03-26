@@ -1,7 +1,7 @@
 <template>
   <RichTable :columns="columns" :service="service" i18n-prefix="roles" :refresh="refresh">
     <template #table-header>
-      <RichButton text-i18n="roles.permission" ghost class="mx-4" @on-click="goToPermissions" />
+      <RichButton text-i18n="roles.permission" ghost class="mx-4" @on-click="goToPermissions" disabled />
       <RichButton text-i18n="roles.create-role" ghost @on-click="showCreatRoleModal"/>
     </template>
     <template #bodyCell="{ column, record }">
