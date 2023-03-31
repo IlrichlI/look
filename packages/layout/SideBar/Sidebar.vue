@@ -6,7 +6,12 @@
       </div>
       <Menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <template v-for="menuItem in menuItems" :key="menuItem.name">
-          <MenuItem v-if="!menuItem?.children?.length" :key="menuItem.name" @click="navigateMenu(menuItem.name)">
+          <MenuItem 
+            v-if="!menuItem?.children?.length" 
+            :disabled="!usePermission(menuItem?.permissions || []).hasPermission"
+            :key="menuItem.name" 
+            @click="navigateMenu(menuItem.name)"
+          >
             <RichIcon v-if="menuItem.icon" :icon="menuItem.icon" />
             <RichTypography 
               class="!text-white"
@@ -24,7 +29,12 @@
                 :text-i18n="`sidebar.${menuItem.name as string}`" 
               />
             </template>
-            <MenuItem  v-for="subMenuItem in menuItem.children" :key="subMenuItem.name" @click="navigateMenu(subMenuItem.name)">
+            <MenuItem 
+              v-for="subMenuItem in menuItem.children" 
+              :disabled="!usePermission(menuItem?.permissions || []).hasPermission"
+              :key="subMenuItem.name" 
+              @click="navigateMenu(subMenuItem.name)"
+            >
               <RichIcon v-if="subMenuItem.icon" :icon="subMenuItem.icon" />
               <RichTypography 
                 class="!text-white"
@@ -47,6 +57,7 @@ import { LayoutSider ,Menu, MenuItem, SubMenu } from 'ant-design-vue'
 import { type PropType, ref, computed, onMounted } from 'vue';
 import { RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 import { RichIcon, RichTypography } from '../../core'
+import { usePermission } from '../../utils'
 
 const props = defineProps({
   routes: {
@@ -62,7 +73,7 @@ const navigateMenu = (name: string) => {
   router.push({ name })
 }
 
-const serilizeRoutes = (routes: RouteRecordRaw[]) => routes.filter(r => r.meta?.menuItem).map(r => ({ name: r.name, path: r.path, icon: r.meta?.icon as string, children: r.children ? serilizeRoutes(r.children) : [] }))
+const serilizeRoutes = (routes: RouteRecordRaw[]) => routes.filter(r => r.meta?.menuItem).map(r => ({ name: r.name, path: r.path, icon: r.meta?.icon as string, permissions: r.meta?.permissions as string[], children: r.children ? serilizeRoutes(r.children) : [] }))
 
 const menuItems = computed(() => serilizeRoutes(props.routes.find(r => r.meta?.sidebar)?.children || []))
 

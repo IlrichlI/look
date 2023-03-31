@@ -1,10 +1,11 @@
 
 #todo:
 
-1. - [] permission composeble
+1. - [x] permission composeble
 2. - [x] users crud
 3. - [x] roles crud
 4. - [x] roles permissions crud
+4. - [x] add role to user
 5. - [x] general table => filter, row, pagination,...
 6. - [] sign up page
 7. - [] fix ts anies and ...
