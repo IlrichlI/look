@@ -1,20 +1,20 @@
 import { fileURLToPath, URL } from 'node:url'
-
+import checker from 'vite-plugin-checker'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), checker({ vueTsc: true /** or an object config */ })],
   server: {
     proxy: {
       base: './',
       '^.*api.*': {
         target: 'http://localhost:3001',
         changeOrigin: true,
-        secure: false,
-      },
-    },
+        secure: false
+      }
+    }
   },
   resolve: {
     alias: {

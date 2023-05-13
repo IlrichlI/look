@@ -1,24 +1,18 @@
 <template>
-        <Button 
-                :type="type" 
-                :html-type="htmlType" 
-                :ghost="ghost" 
-                :loading="loading"
-                @click="onClick"
-        >
-                <slot v-if="!textI18n" />
-                <span v-else>
-                        {{  translate(textI18n)  }}
-                </span>
-        </Button>
+  <Button :type="type" :html-type="htmlType" :ghost="ghost" :loading="loading" @click="onClick">
+    <slot v-if="!textI18n" />
+    <span v-else>
+      {{ translate(textI18n) }}
+    </span>
+  </Button>
 </template>
 
 <script setup lang="ts">
 import { Button } from 'ant-design-vue'
-import type { ButtonType } from 'ant-design-vue/lib/button';
-import { ButtonHTMLType } from 'ant-design-vue/lib/button/buttonTypes';
-import type { PropType } from 'vue';
-import { useTranslate } from '../../../utils';
+import type { ButtonType } from 'ant-design-vue/lib/button'
+import { ButtonHTMLType } from 'ant-design-vue/lib/button/buttonTypes'
+import type { PropType } from 'vue'
+import { useTranslate } from '@rich/utils'
 
 const emit = defineEmits(['onClick'])
 
@@ -40,9 +34,12 @@ defineProps({
     default: () => false
   },
   loading: {
-    type: Boolean as PropType<boolean | {
-                        delay?: number | undefined;
-                }>,
+    type: Boolean as PropType<
+      | boolean
+      | {
+          delay?: number | undefined
+        }
+    >,
     default: () => false
   }
 })
@@ -52,5 +49,4 @@ const { translate } = useTranslate()
 const onClick = () => {
   emit('onClick')
 }
-
 </script>
