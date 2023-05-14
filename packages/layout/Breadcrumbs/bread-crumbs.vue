@@ -1,7 +1,11 @@
 <template>
   <Breadcrumb style="margin: 16px 0">
-    <BreadcrumbItem v-for="breadcrumb in getBreadcrumb()" :key="breadcrumb">
-      <RichTypography type="TypographyText" class="text-xs" :text-i18n="breadcrumb" />
+    <BreadcrumbItem
+      v-for="breadcrumb in breadcrumbObject"
+      :key="breadcrumb.name"
+      :href="breadcrumb.path"
+    >
+      <RichTypography type="TypographyText" class="text-xs" :text-i18n="breadcrumb.name" />
     </BreadcrumbItem>
   </Breadcrumb>
 </template>
@@ -10,7 +14,7 @@
 import { Breadcrumb, BreadcrumbItem } from 'ant-design-vue'
 import { PropType, computed } from 'vue'
 import { RouteRecordRaw, useRoute } from 'vue-router'
-import { RichTypography } from '../../core'
+import { RichTypography } from '@rich/core'
 
 const props = defineProps({
   routes: {
@@ -20,35 +24,38 @@ const props = defineProps({
 })
 
 const route = useRoute()
-const breadcrumbObject = computed(() =>
-  getBreadcrumbFromRoutes(props.routes.find((r) => r.meta?.sidebar)?.children || [])
-)
-
-const getBreadcrumbFromRoutes = (routes: RouteRecordRaw[]) => {
-  const breadcrumb = { name: '', childe: null }
-  const breadcrumbRoute = routes.find((r) => route.path.includes(r.path))
-  if (breadcrumbRoute) {
-    breadcrumb.name = 'sidebar.' + (breadcrumbRoute.name as string)
-    if (breadcrumbRoute.children?.length) {
-      breadcrumb.childe = getBreadcrumbFromRoutes(breadcrumbRoute.children) as any
+const breadcrumbObject = computed<any[]>(() => {
+  const sidebarRoutes: any[] = []
+  props.routes?.map((r: RouteRecordRaw) => {
+    if (r.meta?.sidebar) {
+      if (r.children) sidebarRoutes.push(...r.children)
     }
-    return breadcrumb
-  }
-}
-
-const getBreadcrumb = () => {
-  const breadcrumbItemes: string[] = []
-  let breadcrumbObj = breadcrumbObject.value
-
+  })
+  const breadCrumbsFromRoutes = getBreadcrumbFromRoutes(sidebarRoutes)
+  const breadcrumbItems: any[] = []
+  let breadcrumbObj: any = breadCrumbsFromRoutes
   while (breadcrumbObj?.name) {
-    breadcrumbItemes.push(breadcrumbObj?.name as string)
-    if (breadcrumbObj?.childe) {
-      breadcrumbObj = breadcrumbObj?.childe
+    breadcrumbItems.push(breadcrumbObj)
+    if (breadcrumbObj?.child) {
+      breadcrumbObj = breadcrumbObj?.child
     } else {
       break
     }
   }
+  return breadcrumbItems
+})
+const getBreadcrumbFromRoutes = (routes: RouteRecordRaw[]) => {
+  let breadcrumb: any = {}
+  const breadcrumbRoute = routes.find((r) => route.path.includes(r.path))
 
-  return breadcrumbItemes
+  if (breadcrumbRoute) {
+    breadcrumb = { ...breadcrumbRoute, name: '', child: null }
+    breadcrumb.name = 'sidebar.' + (breadcrumbRoute.name as string)
+    if (breadcrumbRoute.children?.length) {
+      breadcrumb.child = getBreadcrumbFromRoutes(breadcrumbRoute.children) as any
+    }
+
+    return breadcrumb
+  }
 }
 </script>

@@ -5,9 +5,8 @@
       <Header />
       <LayoutContent style="margin: 0 16px">
         <Breadcrumbs :routes="routes" />
-        
-        <router-view />
 
+        <router-view />
       </LayoutContent>
     </Layout>
   </Layout>
@@ -15,21 +14,18 @@
 
 <script setup lang="ts">
 import { Layout, LayoutContent } from 'ant-design-vue'
-import { Sidebar } from '../SideBar';
-import { Header } from '../Header';
-import { Breadcrumbs } from '../Breadcrumbs';
-import { PropType } from 'vue';
-import type { RouteRecordRaw } from 'vue-router';
+import { Sidebar } from '../SideBar'
+import { Header } from '../Header'
+import { Breadcrumbs } from '../Breadcrumbs'
+import { PropType } from 'vue'
+import type { RouteRecordRaw } from 'vue-router'
 
 defineProps({
   routes: {
     type: Array as PropType<Array<RouteRecordRaw>>,
-    default: () => ([])
+    default: () => []
   }
 })
-
-
-
 </script>
 
 <style>

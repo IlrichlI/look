@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
-import App from '@/App.vue'
+import App from './App.vue'
 import router from './router'
-import Antd from "ant-design-vue";
-import { i18n } from '@rich/utils';
+import Antd from 'ant-design-vue'
+import { i18n } from '@rich/utils'
 
-import "ant-design-vue/dist/antd.css";
+import 'ant-design-vue/dist/antd.css'
 import './assets/main.css'
 
 const app = createApp(App)

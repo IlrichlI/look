@@ -3,7 +3,7 @@ import { usersApiRoutes } from './usersService'
 
 const usersRoute: RouteRecordRaw[] = [
   {
-    path: '/user-managment/users',
+    path: '/user-management/users',
     name: 'users',
     component: () => import('./UsersPage.vue'),
     meta: {

@@ -1,9 +1,8 @@
-
 <template>
-  <Modal 
-    :title="translate(title)"
+  <Modal
+    :title="translate(title as string)"
     :footer="false"
-    v-model:visible="visible" 
+    v-model:visible="visible"
     @cancel="closeModal(modalId)"
   >
     <slot v-if="visible" />
@@ -15,9 +14,9 @@
 
 <script setup lang="ts">
 import { Modal } from 'ant-design-vue'
-import { computed, onMounted } from 'vue';
-import { useModal } from './index';
-import { useTranslate } from '../../../utils';
+import { computed, onMounted } from 'vue'
+import { useModal } from './index'
+import { useTranslate } from '@rich/utils'
 
 const props = defineProps({
   modalId: {
@@ -27,7 +26,7 @@ const props = defineProps({
   title: {
     type: String,
     default: () => ''
-  },
+  }
 })
 
 const visible = computed(() => modals.value[props.modalId]?.open || false)
@@ -36,7 +35,6 @@ const { modals, registerModal, closeModal } = useModal()
 const { translate } = useTranslate()
 
 onMounted(() => {
-  registerModal(props.modalId)
+  registerModal(props.modalId as string)
 })
-
 </script>

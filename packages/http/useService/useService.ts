@@ -1,18 +1,17 @@
-import { inject, ref } from "vue"
+import { inject, ref } from 'vue'
 
-export default function useService({ 
-  serviceName, 
-  actionName 
+export default function useService({
+  serviceName,
+  actionName
 }: {
-    serviceName: string,
-    actionName: string
+  serviceName: string
+  actionName: string
 }): {
-    mutate: (payload?: object) => Promise<any>,
-    data: { value: object },
-    error: { value: object },
-    loading: { value: boolean },
+  mutate: (payload?: object) => Promise<any>
+  data: { value: object }
+  error: { value: object }
+  loading: { value: boolean }
 } {
-
   const service = inject(serviceName) as Record<string, (payload?: any) => Promise<any>>
   const data = ref<any>(null)
   const loading = ref(false)
@@ -30,8 +29,6 @@ export default function useService({
 
     return data.value
   }
-
-
 
   return {
     mutate,

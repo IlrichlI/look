@@ -1,5 +1,9 @@
 <template>
-  <PageProvider :services="[dashboardService]" services-name="dashboardService" :messages="{ fa: jsonFa }">
+  <PageProvider
+    :services="[dashboardService]"
+    services-name="dashboardService"
+    :messages="{ fa: jsonFa }"
+  >
     <Dashboard />
   </PageProvider>
 </template>
@@ -8,6 +12,5 @@
 import { PageProvider } from '@rich/layout'
 import { dashboardService } from './dashboardService'
 import jsonFa from './i18n/fa.json'
-import Dashboard from '@/components/dashboard/Dashboard.vue';
+import Dashboard from '@/components/dashboard/Dashboard.vue'
 </script>
-

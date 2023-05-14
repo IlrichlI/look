@@ -1,6 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-
 const requestLogRoute: RouteRecordRaw[] = [
   {
     path: '/system/request-log',
@@ -11,6 +10,5 @@ const requestLogRoute: RouteRecordRaw[] = [
     }
   }
 ]
-
 
 export { requestLogRoute }

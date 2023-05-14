@@ -2,11 +2,7 @@ import { homeRoute } from '@/pages/Home'
 import { loginRoute } from '@/pages/Login'
 import { useRoutes } from '@rich/layout'
 
-export const routes = [
-  ...loginRoute,
-  ...homeRoute
-]
-
+export const routes = [...loginRoute, ...homeRoute]
 
 const { router } = useRoutes({
   routes,

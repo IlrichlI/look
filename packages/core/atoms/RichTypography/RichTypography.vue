@@ -3,18 +3,23 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue';
-import { 
-  Typography, TypographyLink, TypographyParagraph, TypographyText, TypographyTitle
-} from 'ant-design-vue'
-import { useTranslate } from '../../../utils'
+import type { PropType, Component } from 'vue'
 
-type TTypographyType = 
+import {
+  Typography,
+  TypographyLink,
+  TypographyParagraph,
+  TypographyText,
+  TypographyTitle
+} from 'ant-design-vue'
+import { useTranslate } from '@rich/utils'
+
+type TTypographyType =
   | 'Typography'
   | 'TypographyLink'
   | 'TypographyParagraph'
   | 'TypographyText'
-  | 'TypographyTitle' 
+  | 'TypographyTitle'
 
 const props = defineProps({
   type: {
@@ -36,30 +41,29 @@ const props = defineProps({
   level: {
     type: Number,
     default: () => 1
-  },
+  }
 })
 
 const { translate } = useTranslate()
 
-const getComponent = (type: TTypographyType) => {
+const getComponent = (type: TTypographyType | undefined): Component => {
   switch (type) {
-  case 'Typography':
-    return Typography
-  case 'TypographyLink':
-    return TypographyLink
-  case 'TypographyParagraph':
-    return TypographyParagraph
-  case 'TypographyText':
-    return TypographyText
-  case 'TypographyTitle':
-    return TypographyTitle
-  default:
-    return Typography
+    case 'Typography':
+      return Typography
+    case 'TypographyLink':
+      return TypographyLink
+    case 'TypographyParagraph':
+      return TypographyParagraph
+    case 'TypographyText':
+      return TypographyText
+    case 'TypographyTitle':
+      return TypographyTitle
+    default:
+      return Typography
   }
 }
 
 const getText = () => {
   return props.textI18n ? translate(props.textI18n) : props.text
 }
-
 </script>

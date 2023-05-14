@@ -1,16 +1,14 @@
 <template>
-    <div>
-        <slot />
-    </div>
+  <div>
+    <slot />
+  </div>
 </template>
-
 
 <script setup lang="ts">
 import { getInstance } from '../interceptors'
-import { provide } from 'vue';
-import type { PropType } from 'vue';
+import { provide } from 'vue'
+import type { PropType } from 'vue'
 import type { TServices } from './type'
-
 
 const props = defineProps({
   services: {
@@ -26,16 +24,14 @@ const props = defineProps({
 const { instance } = getInstance()
 
 const getInitialServices = () => {
-  let init: any = {}
+  let init: object = {}
   if (Array.isArray(props.services))
     props.services.forEach((item) => {
       init = { ...init, ...item(instance) }
     })
-  else init = { ...props.services(instance) }
+  else init = { ...props.services?.(instance) }
   return init
 }
 
 provide(props.servicesName, getInitialServices())
-
-
 </script>

@@ -1,4 +1,3 @@
-
 import { inject } from 'vue'
 import { createI18n, type ComposerTranslation, useI18n } from 'vue-i18n'
 import fa from '@/i18n/fa.json'
@@ -11,12 +10,18 @@ const i18n = createI18n({
   globalInjection: true,
   locale: 'fa',
   fallbackLocale: 'en',
-  messages,
+  messages
 })
 
 export const useTranslate = () => {
-
-  const translate = inject('translate') as ComposerTranslation<{}, string, 'fa' | 'en', never, never, never>
+  const translate = inject('translate') as ComposerTranslation<
+    object,
+    string,
+    'fa' | 'en',
+    never,
+    never,
+    never
+  >
   const { t } = useI18n()
 
   return { translate: translate || t }

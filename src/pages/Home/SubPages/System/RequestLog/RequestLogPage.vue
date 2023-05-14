@@ -1,5 +1,9 @@
 <template>
-  <PageProvider :services="[requestLogService]" services-name="requestLogService" :messages="{ fa: jsonFa }">
+  <PageProvider
+    :services="[requestLogService]"
+    services-name="requestLogService"
+    :messages="{ fa: jsonFa }"
+  >
     <RequestLog />
   </PageProvider>
 </template>
@@ -8,6 +12,5 @@
 import { PageProvider } from '@rich/layout'
 import { requestLogService } from './requestLogService'
 import jsonFa from './i18n/fa.json'
-import RequestLog from '@/components/RequestLog/RequestLog.vue';
+import RequestLog from '@/components/RequestLog/RequestLog.vue'
 </script>
-

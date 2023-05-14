@@ -9,11 +9,8 @@ const systemRoute: RouteRecordRaw[] = [
       menuItem: true,
       icon: 'WarningOutlined'
     },
-    children: [
-      ...requestLogRoute,
-    ]
+    children: [...requestLogRoute]
   }
 ]
-
 
 export { systemRoute }

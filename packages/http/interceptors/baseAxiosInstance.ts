@@ -7,9 +7,9 @@ export function getInstance() {
     baseURL: '/api',
     withCredentials: false,
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
-    maxRedirects: 0,
+    maxRedirects: 0
   })
 
   instance.interceptors.request.use(requestInterceptors, requestError)

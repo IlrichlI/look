@@ -1,5 +1,5 @@
 <template>
-  <LayoutHeader style="background: #fff; padding: 0" />  
+  <LayoutHeader style="background: #fff; padding: 0" />
 </template>
 
 <script setup lang="ts">

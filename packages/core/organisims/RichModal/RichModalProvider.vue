@@ -3,12 +3,12 @@
 </template>
 
 <script setup lang="ts">
-import { provide, ref } from 'vue';
+import { provide, ref } from 'vue'
 
-const modals = ref<Record<string, { open: boolean, payload: object }>>({})
+const modals = ref<Record<string, { open: boolean; payload: object }>>({})
 
 const openModal = (modalId: string, payload?: object) => {
-  modals.value[modalId] = { open: true, payload: payload || {}  }
+  modals.value[modalId] = { open: true, payload: payload || {} }
 }
 
 const closeModal = (modalId: string) => {
@@ -20,5 +20,4 @@ const registerModal = (modalId: string) => {
 }
 
 provide('rich-modal', { openModal, closeModal, registerModal, modals })
-
 </script>

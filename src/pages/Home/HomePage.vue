@@ -1,6 +1,6 @@
 <template>
   <PageProvider :services="[homeService]" services-name="homeService" :messages="{ fa: jsonFa }">
-    <Layout :routes="routes"/>
+    <Layout :routes="routes" />
   </PageProvider>
 </template>
 
@@ -8,6 +8,5 @@
 import { PageProvider, Layout } from '@rich/layout'
 import { homeService } from './homeService'
 import jsonFa from './i18n/fa.json'
-import { routes } from '@/router';
+import { routes } from '@/router'
 </script>
-

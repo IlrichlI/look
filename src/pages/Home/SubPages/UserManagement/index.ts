@@ -1,11 +1,11 @@
-import { usersRoute } from '@/pages/Home/SubPages/UserManagment/Users'
-import { rolesRoute } from '@/pages/Home/SubPages/UserManagment/Roles'
+import { usersRoute } from '@/pages/Home/SubPages/UserManagement/Users'
+import { rolesRoute } from '@/pages/Home/SubPages/UserManagement/Roles'
 import type { RouteRecordRaw } from 'vue-router'
 
-const userManagmentRoute: RouteRecordRaw[] = [
+const userManagementRoute: RouteRecordRaw[] = [
   {
-    path: '/user-managment',
-    name: 'user-managment',
+    path: '/user-management',
+    name: 'user-management',
     meta: {
       menuItem: true,
       icon: 'UsergroupAddOutlined'
@@ -14,4 +14,4 @@ const userManagmentRoute: RouteRecordRaw[] = [
   }
 ]
 
-export { userManagmentRoute }
+export { userManagementRoute }

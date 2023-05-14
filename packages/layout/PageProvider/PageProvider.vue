@@ -6,10 +6,10 @@
 
 <script setup lang="ts">
 import { HttpServiceProvider } from '../../http'
-import { useI18n } from 'vue-i18n';
-import { provide } from 'vue';
+import { useI18n } from 'vue-i18n'
+import { provide } from 'vue'
 import type { TServices } from '../../http'
-import type { PropType } from 'vue';
+import type { PropType } from 'vue'
 
 const props = defineProps({
   services: {
@@ -21,13 +21,12 @@ const props = defineProps({
     default: () => 'service'
   },
   messages: {
-    type: Object as PropType<{ fa?: object, en?: object }>,
+    type: Object as PropType<{ fa?: object; en?: object }>,
     default: () => ({ fa: {}, en: {} })
   }
 })
 
-const { t } = useI18n({ messages: props.messages as {} })
-      
+const { t } = useI18n({ messages: props.messages as object })
+
 provide('translate', t)
-      
 </script>

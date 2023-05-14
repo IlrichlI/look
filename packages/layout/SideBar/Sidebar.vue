@@ -1,7 +1,7 @@
 <template>
   <LayoutSider v-model:collapsed="collapsed" collapsible>
     <div class="flex justify-around items-center">
-      <img class="h-12 w-12 rounded" src="../../../src/assets/logo.svg" />
+      <img class="h-12 w-12 rounded" src="../../../src/assets/logo.svg" alt="logo" />
       <RichTypography
         text-i18n="sidebar.title"
         class="!text-white p-4 truncate"
@@ -74,7 +74,7 @@ const navigateMenu = (name: string) => {
   router.push({ name })
 }
 
-const serilizeRoutes: any = (routes: RouteRecordRaw[]) =>
+const serializeRoutes: any = (routes: RouteRecordRaw[]) =>
   routes
     .filter((r) => r.meta?.menuItem)
     .map((r) => ({
@@ -82,11 +82,11 @@ const serilizeRoutes: any = (routes: RouteRecordRaw[]) =>
       path: r.path,
       icon: r.meta?.icon as string,
       permissions: r.meta?.permissions as string[],
-      children: r.children ? serilizeRoutes(r.children) : []
+      children: r.children ? serializeRoutes(r.children) : []
     }))
 
 const menuItems = computed(() =>
-  serilizeRoutes(props.routes.find((r) => r.meta?.sidebar)?.children || [])
+  serializeRoutes(props.routes?.map((r) => r.meta?.sidebar)?.children || [])
 )
 
 const collapsed = ref(false)

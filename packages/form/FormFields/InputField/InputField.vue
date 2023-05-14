@@ -1,56 +1,41 @@
-<!-- eslint-disable vue/no-mutating-props -->
 <template>
-  <FormItem
-    :label="labelI18n ? translate(labelI18n) : label"
-    :name="name"
-    :rules="rules"
-  >
-    <Input :type="type" @input="onInputChange" :default-value="defautValue" />
+  <FormItem v-bind="formItemProps" form>
+    <Input v-bind="inputProps" @input="onInputChange" />
   </FormItem>
 </template>
 
-
 <script setup lang="ts">
-import { FormItem, Input } from 'ant-design-vue'
-import type { ChangeEventHandler } from 'ant-design-vue/lib/_util/EventInterface';
-import type { RuleObject } from 'ant-design-vue/lib/form';
-import { type PropType, inject } from 'vue';
-import { useTranslate } from '../../../utils';
-
+import { FormItem, Input, InputProps } from 'ant-design-vue'
+import type { ChangeEvent } from 'ant-design-vue/lib/_util/EventInterface'
+import { type PropType, inject } from 'vue'
+import { FormItemProps } from 'ant-design-vue/lib/form'
 
 const props = defineProps({
-  type: {
-    type: String as PropType<"number" | "search" | "time" | "date" | "week" | "month" | "submit" | "hidden" | "button" | "image" | "text" | "reset" | "checkbox" | "radio" | "color" | "range" | "tel" | "url" | "email" | "datetime-local" | "file" | "password">,
-    default: () => '' 
+  formItemProps: {
+    type: Object as PropType<FormItemProps>,
+    default: () => {
+      return {}
+    }
   },
-  label: {
-    type: String,
-    default: () => '' 
-  },
-  labelI18n: {
-    type: String,
-    default: () => '' 
-  },
-  name: {
-    type: String,
-    default: () => '' 
-  },
-  defautValue: {
-    type: String,
-    default: () => '' 
-  },
-  rules: {
-    type: Array as PropType<RuleObject[]>,
-    default: () => ([]) 
-  },
+  inputProps: {
+    type: Object as PropType<InputProps>,
+    default: () => {
+      return {}
+    }
+  }
 })
 
-const changeForm = inject('changeForm') as Function
+const changeForm = inject('changeForm') as ({
+  key,
+  value
+}: {
+  key: FormItemProps['name']
+  value: string | undefined
+}) => void
 
-const onInputChange: ChangeEventHandler = (e) => {
-  changeForm({ key: props.name, value: e.target.value })
+const onInputChange = (e: ChangeEvent) => {
+  if (changeForm) {
+    changeForm({ key: props.formItemProps?.name, value: e.target.value })
+  }
 }
-
-const { translate } = useTranslate()
-
 </script>

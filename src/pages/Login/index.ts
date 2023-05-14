@@ -1,6 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-
 const loginRoute: RouteRecordRaw[] = [
   {
     path: '/login',
@@ -8,6 +7,5 @@ const loginRoute: RouteRecordRaw[] = [
     component: () => import('./LoginPage.vue')
   }
 ]
-
 
 export { loginRoute }

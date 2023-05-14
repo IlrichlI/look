@@ -1,50 +1,50 @@
 <template>
-  <FormItem
-    :name="name"
-    :rules="rules"
-  >
-    <Checkbox @change="onCheckboxChange" :default-value="defautValue">
+  <FormItem v-bind="formItemProps">
+    <Checkbox @change="onCheckboxChange" :default-value="defaultValue">
       {{ labelI18n ? translate(labelI18n) : label }}
     </Checkbox>
   </FormItem>
 </template>
 
 <script setup lang="ts">
-import { Checkbox, FormItem } from 'ant-design-vue';
-import { RuleObject } from 'ant-design-vue/lib/form';
-import { PropType, inject } from 'vue';
-import { useTranslate } from '../../../utils';
-
+import { Checkbox, FormItem } from 'ant-design-vue'
+import { CheckboxChangeEvent } from 'ant-design-vue/lib/checkbox/interface'
+import { FormItemProps } from 'ant-design-vue/lib/form'
+import { PropType, inject } from 'vue'
+import { useTranslate } from '@rich/utils'
 
 const props = defineProps({
+  formItemProps: {
+    type: Object as PropType<FormItemProps>,
+    default: () => {
+      return {}
+    }
+  },
   label: {
     type: String,
-    default: () => '' 
+    default: () => ''
   },
   labelI18n: {
     type: String,
-    default: () => '' 
+    default: () => ''
   },
-  name: {
+  defaultValue: {
     type: String,
-    default: () => '' 
-  },
-  defautValue: {
-    type: String,
-    default: () => '' 
-  },
-  rules: {
-    type: Array as PropType<RuleObject[]>,
-    default: () => ([]) 
-  },
+    default: () => ''
+  }
 })
 
-const changeForm = inject('changeForm') as Function
+const changeForm = inject('changeForm') as ({
+  key,
+  value
+}: {
+  key: FormItemProps['name']
+  value: boolean
+}) => void
 
-const onCheckboxChange = (e: any) => {
-  changeForm({ key: props.name, value: e.target.checked })
+const onCheckboxChange = (e: CheckboxChangeEvent) => {
+  changeForm({ key: props.formItemProps?.name, value: e.target.checked })
 }
 
 const { translate } = useTranslate()
-
 </script>

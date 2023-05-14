@@ -3,6 +3,5 @@ import { AppProvider } from '@rich/utils'
 </script>
 
 <template>
-    <AppProvider />
+  <AppProvider />
 </template>
-

@@ -21,4 +21,4 @@ export const AxiosErrorHandler = (instance: AxiosInstance) => {
   )
 }
 
-export * from "./baseAxiosInstance"
+export * from './baseAxiosInstance'
