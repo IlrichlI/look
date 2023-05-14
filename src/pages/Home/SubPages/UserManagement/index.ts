@@ -10,12 +10,8 @@ const userManagmentRoute: RouteRecordRaw[] = [
       menuItem: true,
       icon: 'UsergroupAddOutlined'
     },
-    children: [
-      ...usersRoute,
-      ...rolesRoute,
-    ]
+    children: [...usersRoute, ...rolesRoute]
   }
 ]
-
 
 export { userManagmentRoute }

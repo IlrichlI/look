@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
-import {usersApiRoutes} from './usersService'
+import { usersApiRoutes } from './usersService'
 
 const usersRoute: RouteRecordRaw[] = [
   {
@@ -8,12 +8,9 @@ const usersRoute: RouteRecordRaw[] = [
     component: () => import('./UsersPage.vue'),
     meta: {
       menuItem: true,
-      permissions: [
-        usersApiRoutes.users
-      ]
+      permissions: [usersApiRoutes.users]
     }
   }
 ]
-
 
 export { usersRoute }

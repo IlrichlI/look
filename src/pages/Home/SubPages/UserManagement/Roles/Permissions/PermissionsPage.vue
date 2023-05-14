@@ -1,5 +1,9 @@
 <template>
-  <PageProvider :services="[permissionsService]" services-name="permissionsService" :messages="{ fa: jsonFa }">
+  <PageProvider
+    :services="[permissionsService]"
+    services-name="permissionsService"
+    :messages="{ fa: jsonFa }"
+  >
     <Permissions />
   </PageProvider>
 </template>
@@ -8,6 +12,5 @@
 import { PageProvider } from '@rich/layout'
 import { permissionsService } from './permissionService'
 import jsonFa from './i18n/fa.json'
-import Permissions from '@/components/Permissions/Permissions.vue';
+import Permissions from '@/components/Permissions/Permissions.vue'
 </script>
-

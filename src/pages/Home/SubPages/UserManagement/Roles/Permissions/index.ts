@@ -1,9 +1,8 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-
 const permissionsRoute: RouteRecordRaw[] = [
   {
-    path: '/user-managment/roles/permissions',
+    path: '/user-management/roles/permissions',
     name: 'permissions',
     component: () => import('./PermissionsPage.vue'),
     meta: {
@@ -11,6 +10,5 @@ const permissionsRoute: RouteRecordRaw[] = [
     }
   }
 ]
-
 
 export { permissionsRoute }
