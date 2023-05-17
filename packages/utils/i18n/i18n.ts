@@ -1,30 +1,29 @@
-import { inject } from 'vue'
-import { createI18n, type ComposerTranslation, useI18n } from 'vue-i18n'
+import i18next from 'i18next'
 import fa from '@/i18n/fa.json'
 import en from '@/i18n/en.json'
 
-const messages = { fa, en }
-
-const i18n = createI18n({
-  legacy: false,
-  globalInjection: true,
-  locale: 'fa',
-  fallbackLocale: 'en',
-  messages
+i18next.init({
+  lng: 'fa',
+  fallbackLng: 'fa',
+  resources: {
+    fa: { translation: fa },
+    en: { translation: en }
+  },
+  // debug: process.env.NODE_ENV === "development",
+  detection: {
+    caches: ['localStorage', 'cookie'],
+    lookupLocalStorage: 'lng',
+    lookupCookie: 'lng',
+    cookieMinutes: 1000,
+    order: ['localStorage', 'cookie']
+  },
+  interpolation: {
+    escapeValue: false
+  }
 })
 
-export const useTranslate = () => {
-  const translate = inject('translate') as ComposerTranslation<
-    object,
-    string,
-    'fa' | 'en',
-    never,
-    never,
-    never
-  >
-  const { t } = useI18n()
-
-  return { translate: translate || t }
+const addTranslationSchema = (locale: 'fa' | 'en', resources: any) => {
+  i18next.addResourceBundle(locale, 'translation', resources, true, true)
 }
 
-export default i18n
+export { i18next, addTranslationSchema }

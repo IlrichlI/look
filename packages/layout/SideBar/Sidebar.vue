@@ -74,6 +74,14 @@ const navigateMenu = (name: string) => {
   router.push({ name })
 }
 
+type MenuItemType = {
+  name: string
+  path: string
+  icon: string
+  permissions: string[]
+  children: MenuItemType[]
+}
+
 const serializeRoutes: any = (routes: RouteRecordRaw[]) =>
   routes
     .filter((r) => r.meta?.menuItem)
@@ -85,9 +93,9 @@ const serializeRoutes: any = (routes: RouteRecordRaw[]) =>
       children: r.children ? serializeRoutes(r.children) : []
     }))
 
-const menuItems = computed(() =>
-  serializeRoutes(props.routes?.map((r) => r.meta?.sidebar)?.children || [])
-)
+const menuItems = computed<MenuItemType[]>(() => {
+  return serializeRoutes(props.routes?.find((r) => r.meta?.sidebar)?.children || [])
+})
 
 const collapsed = ref(false)
 const selectedKeys = ref<string[]>([])

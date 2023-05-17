@@ -37,7 +37,7 @@ import { Table } from 'ant-design-vue'
 import { ColumnsType } from 'ant-design-vue/lib/table'
 import { PropType, onMounted, ref, watch } from 'vue'
 import { useService } from '../../http'
-import { useTranslate } from '../../utils'
+import { useTranslation } from 'i18next-vue'
 import { RichTypography, RichDivider } from '../../core'
 
 const props = defineProps({
@@ -75,7 +75,7 @@ const page = ref(1)
 const size = ref(8)
 const total = ref(1)
 
-const { translate } = useTranslate()
+const { t: translate } = useTranslation()
 
 const tableColumns: ColumnsType = props.columns?.map(({ title = '', ...rest }) => ({
   title: translate(props.i18nPrefix && title ? props.i18nPrefix + '.' + title : (title as string)),

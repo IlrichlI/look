@@ -6,8 +6,9 @@
 
 <script setup lang="ts">
 import { HttpServiceProvider } from '../../http'
-import { useI18n } from 'vue-i18n'
+import { useTranslation } from 'i18next-vue'
 import { provide } from 'vue'
+import { addTranslationSchema } from '@rich/utils'
 import type { TServices } from '../../http'
 import type { PropType } from 'vue'
 
@@ -26,7 +27,13 @@ const props = defineProps({
   }
 })
 
-const { t } = useI18n({ messages: props.messages as object })
+if (props.messages.fa) {
+  addTranslationSchema('fa', props.messages.fa)
+}
+if (props.messages.en) {
+  addTranslationSchema('en', props.messages.en)
+}
 
+const { t } = useTranslation()
 provide('translate', t)
 </script>

@@ -1,2 +1,13 @@
 {
+  "sidebar": {
+    "title": "پنل مدیریت ریچ",
+    "home": "خانه",
+    "dashboard": "میز کار",
+    "user-management": "مدیریت کاربران",
+    "users": "کاربران",
+    "roles": "نقش ها",
+    "permissions": "دسترسی ها",
+    "system": "سیستم",
+    "request-log": "لاگ درخواست ها"
+  }
 }

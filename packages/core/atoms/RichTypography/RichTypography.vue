@@ -12,7 +12,7 @@ import {
   TypographyText,
   TypographyTitle
 } from 'ant-design-vue'
-import { useTranslate } from '@rich/utils'
+import { useTranslation } from 'i18next-vue'
 
 type TTypographyType =
   | 'Typography'
@@ -44,7 +44,7 @@ const props = defineProps({
   }
 })
 
-const { translate } = useTranslate()
+const { t: translate } = useTranslation()
 
 const getComponent = (type: TTypographyType | undefined): Component => {
   switch (type) {

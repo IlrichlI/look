@@ -16,7 +16,7 @@
 import { Modal } from 'ant-design-vue'
 import { computed, onMounted } from 'vue'
 import { useModal } from './index'
-import { useTranslate } from '@rich/utils'
+import { useTranslation } from 'i18next-vue'
 
 const props = defineProps({
   modalId: {
@@ -32,7 +32,7 @@ const props = defineProps({
 const visible = computed(() => modals.value[props.modalId]?.open || false)
 const { modals, registerModal, closeModal } = useModal()
 
-const { translate } = useTranslate()
+const { t: translate } = useTranslation()
 
 onMounted(() => {
   registerModal(props.modalId as string)
