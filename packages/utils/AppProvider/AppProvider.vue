@@ -14,17 +14,17 @@ import { RichModalProvider } from '../../core'
 
 const appStatus = ref<'initial' | 'authenticated' | 'unauthenticated'>('initial')
 
-const authenticatedAppStatus = () => {
+const authenticateAppStatus = () => {
   appStatus.value = 'authenticated'
 }
 
-const unauthenticatedAppStatus = () => {
+const unauthenticateAppStatus = () => {
   appStatus.value = 'unauthenticated'
 }
 
-provide('appStatus', appStatus)
+provide('appStatus', appStatus.value)
 
-provide('authenticatedAppStatus', authenticatedAppStatus)
+provide('authenticateAppStatus', authenticateAppStatus)
 
-provide('unauthenticatedAppStatus', unauthenticatedAppStatus)
+provide('unauthenticateAppStatus', unauthenticateAppStatus)
 </script>

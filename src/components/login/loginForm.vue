@@ -16,9 +16,9 @@ import { computed, inject } from 'vue'
 import { useAuth } from '@/composables/useAuth'
 
 const { mutate, loading } = useService({ serviceName: 'loginService', actionName: 'login' })
-const authenticatedAppStatus = inject('authenticatedAppStatus') as () => void
+const authenticateAppStatus = inject('authenticateAppStatus') as () => void
 
-const { login } = useAuth({ mutate, authenticatedAppStatus })
+const { login } = useAuth({ mutate, authenticateAppStatus })
 
 const buttonLoading = computed(() => loading.value)
 

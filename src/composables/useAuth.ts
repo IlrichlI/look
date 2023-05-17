@@ -5,23 +5,18 @@ type TUseAuthProps = {
     email: string
     password: string
   }) => Promise<{ token: string; user: { name: string; email: string } }>
-  authenticatedAppStatus: () => void
+  authenticateAppStatus: () => void
 }
 
-export const useAuth = ({ mutate, authenticatedAppStatus }: TUseAuthProps) => {
+export const useAuth = ({ mutate, authenticateAppStatus }: TUseAuthProps) => {
   const router = useRouter()
 
-  const login = async (data: never) => {
-    const res = await mutate(data)
-
-    if (res !== undefined) {
-      localStorage.setItem('rich-user_name', String(res.user.name))
-      localStorage.setItem('rich-user_email', String(res.user.email))
-      localStorage.setItem('rich-token', String(res.token))
-      authenticatedAppStatus()
-
-      await router.push('/')
-    }
+  const login = (data: never) => {
+    router.push({ path: '/dashboard' })
+    localStorage.setItem('rich-user_name', String('test'))
+    localStorage.setItem('rich-user_email', String('test@test.com'))
+    localStorage.setItem('token', String('res.token'))
+    authenticateAppStatus()
   }
 
   return {
