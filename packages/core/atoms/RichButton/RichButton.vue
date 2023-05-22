@@ -1,5 +1,12 @@
 <template>
-  <Button :type="type" :html-type="htmlType" :ghost="ghost" :loading="loading" @click="onClick">
+  <Button
+    :type="type"
+    :html-type="htmlType"
+    :ghost="false"
+    :loading="loading"
+    @click="onClick"
+    danger
+  >
     <slot v-if="!textI18n" />
     <span v-else>
       {{ translate(textI18n) }}

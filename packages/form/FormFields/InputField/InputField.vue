@@ -1,6 +1,6 @@
 <template>
   <FormItem v-bind="formItemProps" form>
-    <Input v-bind="inputProps" @input="onInputChange" />
+    <Input v-bind="inputProps" @input="onInputChange" :value="model" />
   </FormItem>
 </template>
 
@@ -22,8 +22,14 @@ const props = defineProps({
     default: () => {
       return {}
     }
+  },
+  model: {
+    type: String,
+    required: false
   }
 })
+
+const emit = defineEmits(['update:model'])
 
 const changeForm = inject('changeForm') as ({
   key,
@@ -34,6 +40,7 @@ const changeForm = inject('changeForm') as ({
 }) => void
 
 const onInputChange = (e: ChangeEvent) => {
+  emit('update:model', e.target.value)
   if (changeForm) {
     changeForm({ key: props.formItemProps?.name, value: e.target.value })
   }
